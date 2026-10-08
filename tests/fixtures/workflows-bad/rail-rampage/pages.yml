@@ -1,0 +1,37 @@
+# Release に添えた Web 版（RailRampage_web.zip）を GitHub Pages に置き、ブラウザですぐ遊べるようにする。
+# ビルドはしない（Godot の書き出しは手元で行い、その zip を Release に添える）。Release を出すたびに最新の版に入れ替わる
+name: Pages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 最新の Release から Web 版を取ってくる
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --repo "$GITHUB_REPOSITORY" --pattern RailRampage_web.zip
+          unzip -q RailRampage_web.zip -d site
+          test -f site/index.html
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,15 @@
+{
+  "sha": "9fb037999f264ba9a7fc6274d15fa3ae2ab98312",
+  "url": "https://api.github.com/repos/me/disk-sift/git/trees/9fb037999f264ba9a7fc6274d15fa3ae2ab98312",
+  "tree": [
+    { "path": ".github", "mode": "040000", "type": "tree", "sha": "1111111111111111111111111111111111111111", "url": "https://api.github.com/repos/me/disk-sift/git/trees/1111111111111111111111111111111111111111" },
+    { "path": ".github/workflows", "mode": "040000", "type": "tree", "sha": "2222222222222222222222222222222222222222", "url": "https://api.github.com/repos/me/disk-sift/git/trees/2222222222222222222222222222222222222222" },
+    { "path": ".github/workflows/ci.yml", "mode": "100644", "type": "blob", "sha": "3333333333333333333333333333333333333333", "size": 1290, "url": "https://api.github.com/repos/me/disk-sift/git/blobs/3333333333333333333333333333333333333333" },
+    { "path": ".gitignore", "mode": "100644", "type": "blob", "sha": "4444444444444444444444444444444444444444", "size": 40, "url": "https://api.github.com/repos/me/disk-sift/git/blobs/4444444444444444444444444444444444444444" },
+    { "path": "LICENSE", "mode": "100644", "type": "blob", "sha": "5555555555555555555555555555555555555555", "size": 1067, "url": "https://api.github.com/repos/me/disk-sift/git/blobs/5555555555555555555555555555555555555555" },
+    { "path": "README.md", "mode": "100644", "type": "blob", "sha": "6666666666666666666666666666666666666666", "size": 400, "url": "https://api.github.com/repos/me/disk-sift/git/blobs/6666666666666666666666666666666666666666" },
+    { "path": "src", "mode": "040000", "type": "tree", "sha": "7777777777777777777777777777777777777777", "url": "https://api.github.com/repos/me/disk-sift/git/trees/7777777777777777777777777777777777777777" },
+    { "path": "src/main.py", "mode": "100644", "type": "blob", "sha": "8888888888888888888888888888888888888888", "size": 200, "url": "https://api.github.com/repos/me/disk-sift/git/blobs/8888888888888888888888888888888888888888" }
+  ],
+  "truncated": false
+}

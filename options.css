@@ -1,0 +1,73 @@
+/* 設定のページ(SC-03)の見た目。値は RepoLens_画面モック.html の部品の CSS を写した(色は tokens.css)。 */
+/* ラベル 232px + 入力 最大 640px。720px 未満ではラベルを入力の上に置く(画面設計書 §5)。 */
+body { background: var(--canvas); padding: 24px 16px; }
+.pg { max-width: 1000px; margin: 0 auto; background: var(--surface); border-radius: var(--r-l); box-shadow: 0 0 0 1px var(--frame), 0 16px 40px -20px var(--shadow); }
+[hidden] { display: none !important; }
+
+.app-top { display: flex; align-items: center; gap: 10px; padding: 18px 24px 6px; }
+.app-name { font-weight: 700; letter-spacing: .01em; }
+.app-sep { width: 1px; height: 14px; background: var(--rule-2); }
+.app-title { margin: 0; font-size: var(--fs-page); font-weight: 700; }
+
+.note { display: flex; gap: 10px; align-items: flex-start; margin: 14px 24px 0; padding: 10px 12px; border-radius: var(--r-m); background: var(--sunk); color: var(--ink); }
+.note .ic { margin-top: 2px; flex: none; }
+.note-wait { background: var(--unk-weak); }
+.note-wait .ic { color: var(--unk); }
+.note-body { min-width: 0; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: var(--r-m); border: 0; font-weight: 600; font-size: var(--fs); cursor: pointer; white-space: nowrap; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, var(--ink) 12%); }
+.btn[disabled] { background: var(--sunk); color: var(--ink-3); cursor: not-allowed; box-shadow: inset 0 0 0 1px var(--rule); }
+
+.op { padding: 4px 24px 8px; }
+.op-sec { padding: 18px 0 10px; border-bottom: 1px solid var(--rule); }
+.op-sec:last-child { border-bottom: 0; }
+.op-sec h2 { margin: 0 0 10px; font-size: 14px; font-weight: 700; letter-spacing: .03em; }
+.op-field { display: grid; grid-template-columns: 232px minmax(0, 640px); gap: 4px 24px; padding: 8px 0; }
+.op-label { display: grid; align-content: start; gap: 0; padding-top: 5px; }
+.op-label label, .op-label .lbl { font-weight: 600; }
+.key { justify-self: start; margin-top: 4px; font-family: var(--font-mono); font-size: 12px; line-height: 1.5; color: var(--accent-weak-ink); padding: 0 5px; border-radius: 3px; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent); }
+.op-ctl { display: grid; gap: 6px; align-content: start; justify-items: start; }
+.in { width: 100%; min-height: 32px; padding: 5px 9px; border-radius: var(--r-m); border: 1px solid var(--rule-2); background: var(--surface); color: var(--ink); }
+.in::placeholder { color: var(--ink-3); }
+textarea.in { resize: vertical; line-height: 1.5; }
+.in:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+.in[aria-invalid="true"] { border-color: var(--fail); box-shadow: 0 0 0 1px var(--fail); }
+.hint { color: var(--ink-2); }
+.err { display: flex; gap: 6px; align-items: flex-start; color: var(--fail); font-weight: 600; }
+.err .ic { margin-top: 2px; }
+.chk { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: var(--ink); min-height: 24px; }
+.chk input { width: 15px; height: 15px; margin: 0; accent-color: var(--accent); flex: none; }
+.op-ctl .chk + .chk { margin-top: -2px; }
+.seg { display: inline-flex; padding: 2px; border-radius: var(--r-m); box-shadow: inset 0 0 0 1px var(--rule-2); }
+.seg label { position: relative; cursor: pointer; }
+.seg input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.seg span { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 5px; color: var(--ink-2); }
+.seg input:checked + span { background: var(--accent-weak); color: var(--accent-weak-ink); font-weight: 600; }
+.seg input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 1px; }
+.kw { display: grid; gap: 6px; width: 100%; }
+.kw-row { display: grid; grid-template-columns: 112px 1fr; align-items: center; gap: 10px; }
+.kw-row label { color: var(--ink-2); }
+.kw-err { margin-left: 122px; }
+.api-line .rate { padding: 0; }
+.rate { color: var(--ink-2); white-space: nowrap; }
+.rate .num { color: var(--ink); font-weight: 600; }
+.rate-back { margin-left: 2px; }
+
+.op-save { position: sticky; bottom: 0; display: flex; align-items: center; gap: 14px; padding: 12px 24px 16px; border-top: 1px solid var(--rule); background: var(--surface); border-radius: 0 0 var(--r-l) var(--r-l); }
+.op-save .btn { min-width: 96px; }
+.save-msg { display: flex; align-items: center; gap: 6px; min-height: 24px; }
+.save-msg.is-ok { color: var(--pass); }
+.save-msg.is-ng { color: var(--fail); font-weight: 600; }
+
+@media (max-width: 720px) {
+	body { padding: 0; }
+	.pg { border-radius: 0; box-shadow: none; }
+	.app-top, .op, .op-save { padding-left: 16px; padding-right: 16px; }
+	.note { margin-left: 16px; margin-right: 16px; }
+	.op-field { grid-template-columns: minmax(0, 1fr); }
+	.op-label { padding-top: 0; }
+	.kw-row { grid-template-columns: 1fr; gap: 2px; }
+	.kw-err { margin-left: 0; }
+}

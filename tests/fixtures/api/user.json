@@ -1,0 +1,12 @@
+{
+  "login": "me",
+  "id": 123,
+  "node_id": "MDQ6VXNlcjEyMw==",
+  "html_url": "https://github.com/me",
+  "type": "User",
+  "site_admin": false,
+  "name": null,
+  "public_repos": 2,
+  "created_at": "2020-01-01T00:00:00Z",
+  "updated_at": "2026-10-08T00:00:00Z"
+}

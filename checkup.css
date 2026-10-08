@@ -1,0 +1,118 @@
+/* 公開点検のページ(SC-02)の見た目。値は RepoLens_画面モック.html の部品の CSS を写した(色は tokens.css)。 */
+/* 升の列が 12 本(C-13・C-14 を足した)なので、本文の最大幅を 1000px + 72px × 2 にした。狭いときは表だけ横に送り、リポジトリ名の列は止める。 */
+body { background: var(--canvas); padding: 24px 16px; }
+.pg { max-width: 1144px; margin: 0 auto; background: var(--surface); border-radius: var(--r-l); box-shadow: 0 0 0 1px var(--frame), 0 16px 40px -20px var(--shadow); }
+[hidden] { display: none !important; }
+
+.app-top { display: flex; align-items: center; gap: 10px; padding: 18px 24px 6px; }
+.app-name { font-weight: 700; letter-spacing: .01em; }
+.app-sep { width: 1px; height: 14px; background: var(--rule-2); }
+.app-title { margin: 0; font-size: var(--fs-page); font-weight: 700; }
+
+.ck-sum { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 24px 14px; flex-wrap: wrap; border-bottom: 1px solid var(--rule); }
+.ck-meta { display: flex; gap: 28px; margin: 0; }
+.ck-meta div { display: grid; gap: 0; }
+.ck-meta dt { color: var(--ink-2); }
+.ck-meta dd { margin: 0; font-weight: 600; }
+.ck-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ck-actions .rate { margin-left: 8px; }
+.prog { height: 3px; background: var(--rule); margin-top: -1px; }
+.prog span { display: block; height: 100%; background: var(--accent); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: var(--r-m); border: 0; font-weight: 600; font-size: var(--fs); cursor: pointer; white-space: nowrap; text-decoration: none; }
+.btn .ic { width: 15px; height: 15px; }
+.btn-tonal { background: var(--accent-weak); color: var(--accent-weak-ink); }
+.btn-tonal:hover { background: color-mix(in srgb, var(--accent-weak) 80%, var(--accent) 20%); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, var(--ink) 12%); }
+.btn[disabled] { background: var(--sunk); color: var(--ink-3); cursor: not-allowed; box-shadow: inset 0 0 0 1px var(--rule); }
+.lnk { display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; color: var(--accent); font-weight: 600; padding: 5px 6px; border-radius: var(--r-m); cursor: pointer; min-height: 30px; }
+.lnk:hover { background: var(--accent-weak); }
+
+.copy-msg { display: flex; align-items: center; gap: 6px; min-height: 24px; }
+.copy-msg:empty { display: none; }
+.copy-msg .ic { width: 15px; height: 15px; }
+.copy-msg.is-ok { color: var(--pass); }
+.copy-msg.is-ng { color: var(--fail); font-weight: 600; }
+.rate { color: var(--ink-2); white-space: nowrap; padding-right: 6px; }
+.rate .num { color: var(--ink); font-weight: 600; }
+.rate-back { margin-left: 2px; }
+
+.note { display: flex; gap: 10px; align-items: flex-start; margin: 14px 24px 0; padding: 10px 12px; border-radius: var(--r-m); background: var(--sunk); color: var(--ink); }
+.note .ic { margin-top: 2px; flex: none; }
+.note-info .ic { color: var(--ink-2); }
+.note-wait { background: var(--unk-weak); }
+.note-wait .ic { color: var(--unk); }
+.note-err { background: var(--fail-weak); }
+.note-err .ic { color: var(--fail); }
+.note-body { min-width: 0; }
+
+.ck-body { padding: 14px 24px 4px; }
+.sheet-wrap { overflow-x: auto; }
+.empty { display: grid; justify-items: center; gap: 6px; text-align: center; padding: 44px 24px 52px; }
+.empty > .ic { width: 28px; height: 28px; color: var(--ink-3); margin-bottom: 6px; }
+.empty-t { font-weight: 700; }
+.empty-s { color: var(--ink-2); }
+.empty .btn { margin-top: 10px; }
+
+/* 升目の表。止めた列の罫線が消えないよう separate にして、右と下の線をセルに持たせる */
+.sheet { --repo-w: 232px; width: 100%; min-width: calc(var(--repo-w) + 72px * 12); border-collapse: separate; border-spacing: 0; table-layout: fixed; border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+.sheet th, .sheet td { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.sheet thead th { background: var(--sunk); font-weight: 600; vertical-align: bottom; padding: 6px 4px 7px; }
+.sheet .c-repo { text-align: left; padding: 7px 10px; position: sticky; left: 0; z-index: 1; background: var(--surface); }
+.sheet thead .c-repo { background: var(--sunk); }
+.sheet col.c-chk { width: 72px; }
+.sheet td.c-chk, .sheet th.c-chk { text-align: center; padding: 5px 2px; vertical-align: middle; }
+.sheet thead th.c-chk { vertical-align: bottom; padding: 6px 4px 7px; }
+.hid { display: block; font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); font-weight: 400; line-height: 1.3; }
+.hname { display: block; line-height: 1.35; word-break: keep-all; }
+.sheet tbody th { font-weight: 400; vertical-align: middle; }
+.rname { font-family: var(--font-mono); font-size: var(--fs); font-weight: 600; text-decoration: none; color: var(--ink); }
+a.rname:hover { text-decoration: underline; text-underline-offset: 3px; }
+.c-repo.is-muted .rname { color: var(--ink-2); font-weight: 400; }
+.row.has-fail > th { box-shadow: inset 3px 0 0 var(--fail-cell); }
+.row.is-prev > th .rname { font-weight: 400; }
+.tag { display: inline-block; margin: 2px 0 0 8px; padding: 0 6px; border-radius: var(--r-s); background: var(--sunk); color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--rule); white-space: nowrap; line-height: 1.6; }
+.tag-prev { background: transparent; }
+.c-none { text-align: left !important; color: var(--ink-2); padding-left: 12px !important; background: repeating-linear-gradient(135deg, transparent 0 6px, var(--sunk) 6px 7px); }
+.c-none .ic { vertical-align: -3px; margin-right: 6px; color: var(--unk); }
+.c-none > span { position: sticky; left: calc(var(--repo-w) + 12px); }
+.cell-btn { border: 0; background: transparent; padding: 4px; border-radius: var(--r-m); cursor: pointer; display: inline-grid; place-items: center; }
+.cell-btn:hover { background: var(--sunk); }
+.cell-btn.is-open { box-shadow: 0 0 0 2px var(--accent); }
+.sheet tr.reason > td { padding: 0; }
+.why-box { margin: 0; padding: 10px 14px 12px 16px; background: var(--sunk); border-left: 3px solid var(--fail-cell); }
+.why-unk { border-left-color: var(--unk); }
+.why-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.why-repo { font-weight: 600; }
+.cid { font-family: var(--font-mono); font-size: var(--fs); color: var(--ink-2); white-space: nowrap; }
+.lnk-close { margin-left: auto; min-height: 26px; padding: 2px 8px; }
+.why-body { padding: 6px 0 0 28px; }
+.why-body p + p, .why-body ul + p { margin-top: 2px; }
+.why-sub { color: var(--ink-2); }
+.paths { display: grid; gap: 0; margin-top: 2px; }
+.paths.mono li { font-family: var(--font-mono); }
+
+.ck-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px; padding: 12px 24px 18px; color: var(--ink-2); }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; }
+.legend li { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); }
+
+/* 升(§3.1) */
+.mk { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: var(--r-s); flex: none; font: 700 13px/1 var(--font-ui); user-select: none; }
+.mk-pass { color: var(--pass); background: transparent; font-weight: 700; }
+.mk-fail { color: var(--fail-cell-ink); background: var(--fail-cell); }
+.mk-unk { color: var(--unk); background: var(--surface); box-shadow: inset 0 0 0 1.5px var(--unk); }
+.mk-na { color: var(--na); background: transparent; font-weight: 400; }
+.mk-wait { background: transparent; }
+.mk-wait::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--rule-2); }
+.spin { width: 12px; height: 12px; margin-left: 8px; vertical-align: -1px; border-radius: 50%; border: 2px solid var(--rule-2); border-top-color: var(--accent); animation: spin .9s linear infinite; display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spin { border-right-color: var(--accent); } }
+
+@media (max-width: 720px) {
+	body { padding: 0; }
+	.pg { border-radius: 0; box-shadow: none; }
+	.app-top, .ck-sum, .ck-body, .ck-legend { padding-left: 16px; padding-right: 16px; }
+	.note { margin-left: 16px; margin-right: 16px; }
+	.sheet { --repo-w: 160px; }
+}

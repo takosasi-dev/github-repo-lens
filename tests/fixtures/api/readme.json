@@ -1,0 +1,18 @@
+{
+  "type": "file",
+  "encoding": "base64",
+  "size": 280,
+  "name": "README.md",
+  "path": "README.md",
+  "content": "IyBkaXNrLXNpZnQKCiMjIOamguimgQrjg4fjgqPjgrnjgq/jga7kuK3ouqvj\ngpLjgbXjgovjgYTjgavjgYvjgZHjgovlsI/jgZXjgarpgZPlhbfjgIIKCiMj\nIOS4u+OBquapn+iDvQotIOWkp+OBjeOBhOODleOCoeOCpOODq+OCkuaOouOB\nmQoKIyMg5YuV5L2c55Kw5aKDCkxpbnV4KFB5dGhvbiAzLjExIOS7pemZjSkK\nCiMjIOS9v+OBhOaWuQpgcHl0aG9uIC1tIGRpc2tzaWZ0IC0tcmVwb3J0YAoK\nIyMg44Op44Kk44K744Oz44K5Ck1JVCBMaWNlbnNlCgojIyDplovnmbrnirbm\ns4EKdjAuMS4wCg==\n",
+  "sha": "6666666666666666666666666666666666666666",
+  "url": "https://api.github.com/repos/me/disk-sift/contents/README.md?ref=main",
+  "git_url": "https://api.github.com/repos/me/disk-sift/git/blobs/6666666666666666666666666666666666666666",
+  "html_url": "https://github.com/me/disk-sift/blob/main/README.md",
+  "download_url": "https://raw.githubusercontent.com/me/disk-sift/main/README.md",
+  "_links": {
+    "self": "https://api.github.com/repos/me/disk-sift/contents/README.md?ref=main",
+    "git": "https://api.github.com/repos/me/disk-sift/git/blobs/6666666666666666666666666666666666666666",
+    "html": "https://github.com/me/disk-sift/blob/main/README.md"
+  }
+}

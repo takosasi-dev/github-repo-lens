@@ -1,0 +1,128 @@
+<!doctype html>
+<!-- 設定のページ(画面設計書 SC-03)。仕様書 §9.6 の設定を変え、API の残りを見る。 -->
+<!-- 値の読み込み・欄の検査・保存は options.js(検査と保存の中身は settings.js)。README のキーワードの 6 行は options.js が README_ITEMS から作る。 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>設定</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="options.css">
+<script type="module" src="options.js"></script>
+</head>
+<body>
+<div class="pg">
+	<header class="app-top">
+		<svg class="logo" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="var(--accent)"/><circle cx="10.5" cy="10.5" r="5.6" fill="none" stroke="var(--accent-ink)" stroke-width="1.9"/><path d="M7.9 9.3h5.2M7.9 11.9h3.4" stroke="var(--accent-ink)" stroke-width="1.5" stroke-linecap="round"/><path d="M14.8 14.8 18.6 18.6" stroke="var(--accent-ink)" stroke-width="2.3" stroke-linecap="round"/></svg>
+		<span class="app-name">RepoLens</span>
+		<span class="app-sep" aria-hidden="true"></span>
+		<h1 class="app-title">設定</h1>
+	</header>
+
+	<div id="broken" class="note note-wait" role="status" hidden>
+		<svg class="ic" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4.8V8l2.2 1.4"/></svg>
+		<div class="note-body"><p>保存した設定が読めないので、既定値で動いている。保存を押すまで元の値は上書きしない</p></div>
+	</div>
+
+	<form id="form" class="op" novalidate>
+		<section class="op-sec">
+			<h2>公開点検</h2>
+			<div class="op-field" data-field="ownerLogin">
+				<div class="op-label"><label for="ownerLogin">GitHub のユーザー名</label><span class="key">ownerLogin</span></div>
+				<div class="op-ctl">
+					<input id="ownerLogin" class="in mono" type="text" autocomplete="off" spellcheck="false">
+					<p class="hint">空にすると公開点検を使わない</p>
+				</div>
+			</div>
+			<div class="op-field">
+				<div class="op-label"><span class="lbl" id="lblInclude">点検に含める</span><span class="key">includeForks・includeArchived</span></div>
+				<div class="op-ctl" role="group" aria-labelledby="lblInclude">
+					<label class="chk"><input id="includeForks" type="checkbox"><span>フォークも点検する</span></label>
+					<label class="chk"><input id="includeArchived" type="checkbox"><span>アーカイブ済みも点検する</span></label>
+				</div>
+			</div>
+		</section>
+
+		<section class="op-sec">
+			<h2>コピーの形</h2>
+			<div class="op-field">
+				<div class="op-label"><span class="lbl" id="lblFormat">ショートカットでコピーする形</span><span class="key">defaultFormat</span></div>
+				<div class="op-ctl">
+					<div class="seg" role="radiogroup" aria-labelledby="lblFormat">
+						<label><input type="radio" name="defaultFormat" value="bullet"><span><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4h7M6.5 8h7M6.5 12h7"/><circle cx="3" cy="4" r=".6" fill="currentColor"/><circle cx="3" cy="8" r=".6" fill="currentColor"/><circle cx="3" cy="12" r=".6" fill="currentColor"/></svg>箇条</span></label>
+						<label><input type="radio" name="defaultFormat" value="row"><span><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="5" width="13" height="6" rx="1"/><path d="M5.5 5v6M9.5 5v6"/></svg>表の行</span></label>
+					</div>
+					<p class="hint">ショートカット copy-repo が popup を開かずに入れる形</p>
+				</div>
+			</div>
+			<div class="op-field">
+				<div class="op-label"><span class="lbl" id="lblBullet">箇条の形</span><span class="key">bullet</span></div>
+				<div class="op-ctl" role="group" aria-labelledby="lblBullet">
+					<label class="chk"><input id="bullet" type="checkbox"><span>1行目を「- 」で始める</span></label>
+				</div>
+			</div>
+			<div class="op-field">
+				<div class="op-label"><span class="lbl" id="lblHeader">表の行の形</span><span class="key">includeHeader</span></div>
+				<div class="op-ctl" role="group" aria-labelledby="lblHeader">
+					<label class="chk"><input id="includeHeader" type="checkbox"><span>見出し行もつける</span></label>
+					<p class="hint">popup の印の既定。ショートカットにも使う</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="op-sec">
+			<h2>点検のルール</h2>
+			<div class="op-field" data-field="extraAllowedEmails">
+				<div class="op-label"><label for="extraAllowedEmails">ほかに許可するアドレス</label><span class="key">extraAllowedEmails</span></div>
+				<div class="op-ctl">
+					<textarea id="extraAllowedEmails" class="in mono" rows="3" placeholder="1行に1つ。10件まで" spellcheck="false"></textarea>
+					<p class="hint">ユーザー名から作る noreply のアドレスは書かなくても許可する</p>
+				</div>
+			</div>
+			<div class="op-field" data-field="binaryExts">
+				<div class="op-label"><label for="binaryExts">ビルド成果物の拡張子</label><span class="key">binaryExts</span></div>
+				<div class="op-ctl">
+					<input id="binaryExts" class="in mono" type="text" autocomplete="off" spellcheck="false">
+					<p class="hint">カンマで区切る</p>
+				</div>
+			</div>
+			<div class="op-field" data-field="junkNames">
+				<div class="op-label"><label for="junkNames">不要なフォルダ・ファイルの名前</label><span class="key">junkNames</span></div>
+				<div class="op-ctl">
+					<textarea id="junkNames" class="in mono" rows="2" spellcheck="false"></textarea>
+					<p class="hint">カンマで区切る。パスの最後の部分と比べる</p>
+				</div>
+			</div>
+			<div class="op-field">
+				<div class="op-label"><span class="lbl" id="lblKw">README の見出しのキーワード</span><span class="key">readmeHeadingKeywords</span></div>
+				<div class="op-ctl" role="group" aria-labelledby="lblKw">
+					<div id="kw" class="kw"></div>
+					<p class="hint">見出しにどれか1つが入っていれば、その項目があるとみなす。カンマで区切る</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="op-sec">
+			<h2>API</h2>
+			<div class="op-field">
+				<div class="op-label"><span class="lbl">残りの回数</span></div>
+				<div class="op-ctl">
+					<p class="api-line"><span id="rate" class="rate"></span></p>
+					<p class="hint">認証なしで1時間に60回まで。回数は回線(IP)ごとに数える</p>
+				</div>
+			</div>
+		</section>
+	</form>
+
+	<div class="op-save">
+		<button type="button" id="save" class="btn btn-primary">保存</button>
+		<p id="saveMsg" class="save-msg" role="status"></p>
+	</div>
+</div>
+
+<template id="icons">
+	<svg data-ic="alert" class="ic" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4.8v3.8"/><circle cx="8" cy="11.1" r=".55" fill="currentColor"/></svg>
+	<svg data-ic="check" class="ic" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5"/></svg>
+</template>
+</body>
+</html>

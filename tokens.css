@@ -1,0 +1,47 @@
+/* 3 つの画面(popup・checkup・options)が共有するデザイントークンと土台の決まり(画面設計書 §7)。 */
+/* 値は RepoLens_画面モック.html の :root をそのまま写した。テーマの切り替えは持たず prefers-color-scheme に従う。 */
+:root {
+	color-scheme: light;
+	--canvas: #ECEFF0; --surface: #FFFFFF; --sunk: #F4F6F7;
+	--ink: #1A2226; --ink-2: #55626A; --ink-3: #8A959B;
+	--rule: #E3E7E9; --rule-2: #CDD4D7;
+	--frame: rgba(16, 28, 34, .12); --shadow: rgba(16, 28, 34, .10);
+	--accent: #2B4C7E; --accent-ink: #FFFFFF; --accent-weak: #E8EEF6; --accent-weak-ink: #24426E;
+	--pass: #2E7D32;
+	--fail: #C62828; --fail-cell: #C62828; --fail-cell-ink: #FFFFFF; --fail-weak: #FBEAEA;
+	--unk: #A85400; --unk-weak: #FDF1E4;
+	--na: #636E73;
+	--font-ui: "Segoe UI", "Yu Gothic UI", "Meiryo", system-ui, sans-serif;
+	--font-mono: "Cascadia Mono", Consolas, monospace;
+	--fs: 13px; --fs-title: 15px; --fs-page: 18px;
+	--r-s: 4px; --r-m: 6px; --r-l: 8px;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		color-scheme: dark;
+		--canvas: #0E1214; --surface: #171C1F; --sunk: #1D2327;
+		--ink: #E3E8EA; --ink-2: #A0ABB1; --ink-3: #6F7A80;
+		--rule: #273035; --rule-2: #3A454A;
+		--frame: rgba(255, 255, 255, .08); --shadow: rgba(0, 0, 0, .45);
+		--accent: #8DB4E8; --accent-ink: #0E1A2B; --accent-weak: #1E2B3D; --accent-weak-ink: #B3CDF0;
+		--pass: #72C077;
+		--fail: #F06A66; --fail-cell: #C62828; --fail-cell-ink: #FFFFFF; --fail-weak: #331B1B;
+		--unk: #F2A04E; --unk-weak: #33240F;
+		--na: #8A959B;
+	}
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; color: var(--ink); font: 400 var(--fs)/1.55 var(--font-ui); -webkit-font-smoothing: antialiased; }
+button, input, textarea { font: inherit; color: inherit; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; }
+.mono { font-family: var(--font-mono); font-size: var(--fs); }
+.num { font-variant-numeric: tabular-nums; }
+.ic { width: 16px; height: 16px; flex: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--r-s); }
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { animation: none !important; transition: none !important; }
+}
