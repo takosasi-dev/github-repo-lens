@@ -1,3 +1,5 @@
+<img src="icons/128.png" width="96" alt="RepoLens のアイコン">
+
 # RepoLens
 
 GitHub のリポジトリを調べるための Chrome 拡張です。
@@ -17,6 +19,20 @@ GitHub の非公式の拡張です。GitHub, Inc. とは関係ありません。
   - C-14 守りの書き方: `uses:` を SHA で固定、checkout の `persist-credentials: false`、`timeout-minutes`、`concurrency`、一番上の permissions に書き込みの権限を置かない
   - YAML は全部は読みません(依存なし)。字下げと行の形で見るので、アンカーや複数行の引用文字列の中は見落とします。
 - **設定のページ**: 点検するユーザー名、コピーの形、点検のルール(許可するメールアドレス・ビルド成果物の拡張子など)を変えられます。
+
+## 画面
+
+popup(このリポジトリを開いてアイコンを押したところ):
+
+<img src="docs/screenshots/popup.png" width="360" alt="popup の画面">
+
+公開点検のページ(作者の公開リポジトリを点検したところ。赤い × が決めたルールに合わない所):
+
+![公開点検のページ](docs/screenshots/checkup.png)
+
+設定のページ:
+
+![設定のページ](docs/screenshots/options.png)
 
 ## 動作環境
 
